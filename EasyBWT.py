@@ -1,19 +1,19 @@
 import numpy as np
 
-#separator must be a non-alphanumeric character
-separator = "#"
+#terminator must be a non-alphanumeric character
+terminator = "#"
 
 ### BUILDING BWT
 def add_termination(sequence):
     #Add the termination symbol to the original string
     sequence = sequence
-    sequence += separator
+    sequence += terminator
 
     return sequence
 
 def sorting_key():
     #Define the new alphabet and the respective index dictionary
-    alphabet = f"{separator}ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    alphabet = f"{terminator}ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     sorting_key = dict(zip(alphabet, range(len(alphabet))))
 
     return sorting_key
@@ -48,11 +48,11 @@ def BWT(sequence):
     #loop through the suffix array and compute the BWT
     for i in suffix_array:
         if i == 0:
-            bwt += separator
+            bwt += terminator
         else:
             bwt += sequence[i-1]
-    return bwt
 
+    return bwt
 
 ### REVERSING BWT
 def get_FL_column(bwt):
@@ -64,15 +64,15 @@ def get_FL_column(bwt):
 
 def rank_column(column):
     counter = dict()
-    ranked = []
+    ranked = np.empty(len(column), dtype=object)
 
-    for i in column:
-        if i not in counter:
-            ranked.append((i, 0))
-            counter[i] = 1
+    for i, j in enumerate(column):
+        if j not in counter:
+            ranked[i] = (j, 0)
+            counter[j] = 1
         else:
-            counter[i] += 1
-            ranked.append((i, counter[i]))
+            ranked[i] = (j, counter[j])
+            counter[j] += 1
 
     return ranked
 
@@ -80,7 +80,7 @@ def reverse_BWT(bwt):
     F_column, L_column = get_FL_column(bwt)
     F_column = rank_column(F_column)
     L_column = rank_column(L_column)
-    reversed = separator
+    reversed = terminator
 
     idx = 0
     last_idx = 0
@@ -98,11 +98,12 @@ def reverse_BWT(bwt):
         last_idx = idx
         #It only adds a character if it is different from # and It breaks the loop otherwise because it recomposed the
         #original word
-        if L_column[idx][0] != separator:
+        if L_column[idx][0] != terminator:
             reversed = L_column[idx][0] + reversed
         else:
             break
         idx = 0
+
     return reversed
 
 #testing code
