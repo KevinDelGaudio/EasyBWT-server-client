@@ -4,7 +4,7 @@ This is a small package with the purpose of computing Burrows-Wheeler transforma
 of DNA sequences.
 You will be able to host a server able to accept requests from a client using the command prompt.
 In this folder you will find 3 scripts: **EasyBWT.py** is the script for the computation of the BWT and its reversion 
-and in principle it could be used all for non-DNA strings but server and client will be restricted to DNA only; 
+and in principle it could be used for non-DNA strings but server and client will be restricted to DNA only; 
 **server.py** is the script that will make you able to host and handle requests from clients using parallel computing; 
 **client.py** is the script used by the final user on the command line to request trasformation or decription of BWTs.
 Note that you will need a python version greater than 3.10 for this program to work.
