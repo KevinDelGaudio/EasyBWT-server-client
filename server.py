@@ -96,7 +96,7 @@ class Server:
     def handle_configs(self):
         #create the config file if it does not exist in the folder, initialize the options with a default value
         if not os.path.isfile("config.txt"):
-            options = ["host = 127.0.0.1", "port = 16384"]
+            options = ["host = localhost", "port = 16384"]
             with open("config.txt", "w") as config:
                 config.write("\n".join(options))
 
