@@ -43,10 +43,11 @@ This will reverse the BWT and save the output in a file.
 
 output: CAGAGCTCATGAC#
 
-3) **python client.py localhost 16384 -t your_dir/wuhan.fasta**
+3) **python client.py localhost 16384 -t "your_dir/wuhan.fasta"**
 
 This will read the file wuhan.fasta and compute the BWT, if the file is in the same folder as client.py you can just
-write wuhan.fasta. This command won't save the output in a file
+write wuhan.fasta. Remember to put the path between quotation marks " or '.  
+This command won't save the output in a file
 
 4) **python client.py localhost 16384 -r output.txt -save**
 
