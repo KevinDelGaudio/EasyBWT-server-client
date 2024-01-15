@@ -13,7 +13,7 @@ class Server:
         self.host, self.port = self.configs["host"], self.configs["port"]
         self.max_bytes = 8192
         self.end = b"\0"
-        self.separator = "#"
+        self.terminator = "#"
         self.backlog = 100
         self.main()
 
@@ -68,7 +68,7 @@ class Server:
     #check if the string given by the user is valid
     def validator(self, data, method):
         temp_data = data.upper()
-        alphabet = f"{self.separator}ACGT"
+        alphabet = f"{self.terminator}ACGT"
         data_len = len(data)
         valid_count = 0
 
@@ -81,14 +81,14 @@ class Server:
 
         match method:
             case "-t" | "-transform":
-                if temp_data.count(self.separator) > 0:
+                if temp_data.count(self.terminator) > 0:
                     data = "Error: The string cannot contain any symbol"
                     return data, False
                 else:
                     return data, True
             case "-r" | "-reverse":
-                if temp_data.count(self.separator) != 1:
-                    data = f"Error: The string cannot contain more than one {self.separator}"
+                if temp_data.count(self.terminator) != 1:
+                    data = f"Error: The string cannot contain more than one {self.terminator}"
                     return data, False
                 else:
                     return data, True

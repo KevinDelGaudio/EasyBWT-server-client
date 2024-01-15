@@ -4,7 +4,7 @@ This is a small package with the purpose of computing Burrows-Wheeler transforma
 of DNA sequences.
 You will be able to host a server able to accept requests from a client using the command prompt.
 In this folder you will find 3 scripts: **EasyBWT.py** is the script for the computation of the BWT and its reversion 
-and in principle it could be used for non-DNA strings but server and client will be restricted to DNA only; 
+and in principle it could be used all for non-DNA strings but server and client will be restricted to DNA only; 
 **server.py** is the script that will make you able to host and handle requests from clients using parallel computing; 
 **client.py** is the script used by the final user on the command line to request trasformation or decription of BWTs.
 Note that you will need a python version greater than 3.10 for this program to work.
@@ -16,7 +16,8 @@ created automatically by it
 3) In config.txt modify the host to your custom IP address (default: localhost), you can also choose a
 custom port (default: 16384), just be sure that it is an open port on your router.
 4) The terminator character is "#" because "$" was messing with Windows Powershell but you can choose to use the "$" by
-modifying the variable *terminator* in EasyBWT.py, just be aware that it needs to be a non-alphabetic character.
+modifying the variable *terminator* in EasyBWT.py and the class variable self.terminator in server.py, just be aware 
+that it needs to be a non-alphabetic character.
 5) Within your shell go to the folder containing the scripts and start the server with the command:
 "python server.py", your server is now on and waiting for clients to connect and make requests.
 
@@ -45,10 +46,9 @@ output: CAGAGCTCATGAC#
 
 3) **python client.py localhost 16384 -t "your_dir/wuhan.fasta"**
 
-Remember to put the path between quotation marks " or '.
 This will read the file wuhan.fasta and compute the BWT, if the file is in the same folder as client.py you can just
-write wuhan.fasta without quotation marks. 
-This command won't save the output in a file
+write wuhan.fasta. Remember to put the path between quotation marks " or '. 
+This command won't save the output in a file. 
 
 4) **python client.py localhost 16384 -r output.txt -save**
 
